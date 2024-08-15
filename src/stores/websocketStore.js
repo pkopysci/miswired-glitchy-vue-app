@@ -1,8 +1,15 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import ReconnectingWebSocket from 'reconnecting-websocket'
+import { useAdcStore } from './adcStore'
+import { useKeyTracesStore } from './keyTracesStore'
+import { useGlitchStore } from './glitchStore'
 
 export const useWebsocketStore = defineStore('websocketStore', () => {
+  const adcStore = useAdcStore()
+  const keyTracesStore = useKeyTracesStore()
+  const glitchStore = useGlitchStore()
+
   /**
    * The websocket object used to communicate with the board logic.
    */
@@ -23,6 +30,25 @@ export const useWebsocketStore = defineStore('websocketStore', () => {
    */
   const host = ref('')
 
+  const responseActions = {
+    ADCStream: (rx) => {
+      try {
+        adcStore.updateLastAmp(rx.LastAmpInVolts)
+        adcStore.updateLastBias(rx.LastBiasVolts)
+      } catch (error) {
+        console.error(
+          'websocketStore - failed to update ADCStream response action: ' + error.message
+        )
+      }
+    },
+    KeyTraces: (rx) => {
+      keyTracesStore.updateKeyArrays(rx.key_1_array, rx.key_2_array, rx.key_3_array)
+    },
+    UpdateGLitchStatus: (rx) => {
+      glitchStore.updateGlitchStatus(rx.running, rx.success, rx.try_number, rx.delay_value)
+    }
+  }
+
   /**
    * Attempt to connect to the Glitchy board at the host/ip provided when calling initialize().
    * Logs an error to console if the store has not been initialized.
@@ -33,6 +59,7 @@ export const useWebsocketStore = defineStore('websocketStore', () => {
       return
     }
 
+    console.log('opening socket to ' + host.value)
     websocket.value.reconnect()
   }
 
@@ -59,34 +86,59 @@ export const useWebsocketStore = defineStore('websocketStore', () => {
    * Logs an error to console if 'host' is undefined or empty (length < 1).
    * @param {string} host the ws:// address used to connect to the Glitchy board.
    */
-  function initialize(host) {
-    if (!host || host.length < 1) {
-      console.error('websocketStore.initialize() - host cannt be undefined or empty.')
+  function initialize(serverHost) {
+    if (!serverHost || serverHost.length < 1) {
+      console.error('websocketStore.initialize() - host cannot be undefined or empty.')
       return
     }
 
     killSocket()
-    websocket.value = new ReconnectingWebSocket(host, [], {
+    host.value = serverHost
+    websocket.value = new ReconnectingWebSocket(host.value, [], {
       debug: false,
       startClosed: true
     })
 
     websocket.value.addEventListener('open', () => {
-      console.log('websocketStore.js - open event handler')
+      console.log('websocketStore - open event handler')
       connected.value = true
     })
 
     websocket.value.addEventListener('close', () => {
-      console.log('websocketStore.js - close event handler')
+      console.log('websocketStore - close event handler')
       connected.value = false
     })
 
     websocket.value.addEventListener('message', (msg) => {
-      console.log('websocketStore.js = message event handler:')
-      console.log(msg)
+      try {
+        let parsedRx = JSON.parse(msg.data)
+        console.log(parsedRx.PacketType)
+        responseActions[parsedRx.PacketType](parsedRx)
+      } catch (error) {
+        console.error('websocketstore - failed to parse response. Reason: ' + error.message)
+      }
+    })
+
+    websocket.value.addEventListener('error', (error) => {
+      console.error('Error encountered with board communication:')
+      console.error(error)
     })
 
     initialized.value = true
+  }
+
+  function send(message) {
+    if (!initialized.value || !connected.value) {
+      console.error('websocketStore.send() - not initialized or not connected.')
+      return
+    }
+
+    if (!message) {
+      console.error('websocketStore.send() - message cannot be undefined.')
+      return
+    }
+
+    websocket.value.send(message)
   }
 
   return {
@@ -97,6 +149,7 @@ export const useWebsocketStore = defineStore('websocketStore', () => {
     open,
     close,
     killSocket,
-    initialize
+    initialize,
+    send
   }
 })
