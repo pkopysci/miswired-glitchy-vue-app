@@ -18,5 +18,14 @@ onBeforeUnmount(() => {
 
 <template>
   <AppHeader></AppHeader>
-  <RouterView></RouterView>
+  <main>
+    <RouterView></RouterView>
+  </main>
 </template>
+
+<style>
+main {
+  max-width: 1280px;
+  margin: auto;
+}
+</style>

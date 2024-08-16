@@ -1,0 +1,21 @@
+@import './reset.css';
+
+html {
+  font-family: 'Lato';
+  font-weight: normal;
+}
+
+:root {
+  --dark-theme-bg: #1a1a1a;
+  --dark-theme-color: #dfdfdf;
+  --dark-theme-active: #00ffa6ff;
+}
+
+a {
+  color: var(--dark-theme-color);
+  text-decoration: none;
+}
+
+.link-active {
+  color: var(--dark-theme-active);
+}
