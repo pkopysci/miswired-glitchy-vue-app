@@ -1,18 +1,9 @@
 <script setup>
 import { onBeforeUnmount, onMounted } from 'vue'
 import { useWebsocketStore } from './stores/websocketStore'
-import { useAdcStore } from './stores/adcStore'
+import AppHeader from './components/AppHeader.vue'
 
 const websocketStore = useWebsocketStore()
-const adcStore = useAdcStore()
-
-const startStream = () => {
-  adcStore.startStream()
-}
-
-const stopStream = () => {
-  adcStore.stopStream()
-}
 
 onMounted(() => {
   console.log('app.onMounted()')
@@ -26,9 +17,6 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <h1>Hello, Glitchy Vue!</h1>
-  <button @click="startStream">Start Stream</button>
-  <button @click="stopStream">Stop Stream</button>
+  <AppHeader></AppHeader>
+  <RouterView></RouterView>
 </template>
-
-<style scoped></style>

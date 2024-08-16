@@ -10,6 +10,12 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
   const key2Array = ref([])
   const key3Array = ref([])
 
+  /**
+   * Update the local store of power data for all 3 keys used in the glitching test.
+   * @param {Array<number>} array1 The power data for the first key used in the key glitch test
+   * @param {Array<number>} array2 The power data for the second key used in the key glitch test
+   * @param {Array<number>} array3 The power data for the third key used in the key glitch test
+   */
   function updateKeyArrays(array1, array2, array3) {
     console.log('useKeyTracesStore.updateKeyArrays()')
     console.log(array1)
@@ -21,12 +27,11 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
     key3Array.value = array3
   }
 
+  /**
+   * Sends a request to the Glitchy board to begin a power analysis of the 3 keys and stream results.
+   */
   function startAnalysis() {
     websocketStore.send(START_COMMAND)
-  }
-
-  function stopAnalysis() {
-    console.log('keyTraceStore.stopAnalysis()')
   }
 
   return {
@@ -34,7 +39,6 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
     key2Array,
     key3Array,
     updateKeyArrays,
-    startAnalysis,
-    stopAnalysis
+    startAnalysis
   }
 })
