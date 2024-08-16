@@ -1,6 +1,7 @@
 <script setup>
 import { onBeforeUnmount, onMounted } from 'vue'
 import { useWebsocketStore } from './stores/websocketStore'
+import AppHeader from './components/AppHeader.vue'
 
 const websocketStore = useWebsocketStore()
 
@@ -16,7 +17,6 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <h1>Hello, Glitchy Vue!</h1>
+  <AppHeader></AppHeader>
+  <RouterView></RouterView>
 </template>
-
-<style scoped></style>
