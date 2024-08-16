@@ -6,18 +6,19 @@ This web app is an alternate way to interface with the [Glitchy Circuit Breaker 
 after running the install & build commands, the contents of the *dist* folder should be loaded to the root directory of a MicroSD card and inserted into the card slot of the Glitchy board. Then follow the normal connection instructions defined in the [Glitchy Wiki](https://github.com/miswired/glitchy/wiki/Guide-%E2%80%90-Quick-Start).
 
 ## Release Notes
-### 0.0.1 - Alpha
+### 0.0.2 - Alpha
 #### New Features
-* initial project creation
-* added websocket and Pinia stores
+* created stores for all freatures
+* Created empty template views for all features
+* Added error handling for for bad server responses
 
 #### Bug Fixes
 * none
 
 #### Backlog
-* error handling for failed websocket connections
-* Add stores for specific Glitchy board features
+
 * Add visualization libraries & create UI visualizations
+* UI design
 
 ## Recommended IDE Setup
 
