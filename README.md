@@ -8,7 +8,7 @@ after running the install & build commands, the contents of the *dist* folder sh
 ## Release Notes
 ### 0.0.2 - Alpha
 #### New Features
-* created stores for all freatures
+* created stores for all features
 * Created empty template views for all features
 * Added error handling for for bad server responses
 
