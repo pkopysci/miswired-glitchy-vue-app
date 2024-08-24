@@ -1,4 +1,16 @@
-<script setup></script>
+<script setup>
+import logo from '@/assets/glitch-logo.png'
+</script>
 <template>
-  <h1>Home View</h1>
+  <div class="banner">
+    <img :src="logo" />
+  </div>
 </template>
+
+<style scoped>
+.banner {
+  height: 250px;
+  overflow: hidden;
+  border: none;
+}
+</style>

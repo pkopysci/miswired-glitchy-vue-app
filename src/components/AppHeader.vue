@@ -7,8 +7,10 @@ import { RouterLink } from 'vue-router'
   <div class="header-wrapper">
     <header class="app-header">
       <span>
-        <img :src="logo" alt="Glitch App" />
-        <span class="logo-text">Glitchy</span>
+        <RouterLink to="/">
+          <img :src="logo" alt="Glitch App" />
+          <span class="logo-text">Glitchy</span>
+        </RouterLink>
       </span>
       <!-- Hamburger Icon -->
       <input class="side-menu" type="checkbox" id="side-menu" />
