@@ -1,10 +1,13 @@
 @import './reset.css';
+@import './lato-styles.css';
 
 html {
   font-family: 'Lato';
   font-weight: normal;
 }
-
+body {
+  font-family: 'Lato';
+}
 :root {
   --dark-theme-bg: #1a1a1a;
   --dark-theme-color: #dfdfdf;
