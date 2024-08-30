@@ -2,7 +2,7 @@
 import { onBeforeUnmount, onMounted } from 'vue'
 import { useWebsocketStore } from './stores/websocketStore'
 import AppHeader from './components/AppHeader.vue'
-
+import AppFooter from './components/AppFooter.vue'
 const websocketStore = useWebsocketStore()
 
 onMounted(() => {
@@ -21,11 +21,5 @@ onBeforeUnmount(() => {
   <main>
     <RouterView></RouterView>
   </main>
+  <AppFooter></AppFooter>
 </template>
-
-<style>
-main {
-  max-width: 1280px;
-  margin: auto;
-}
-</style>
