@@ -1,16 +1,30 @@
 @import './reset.css';
+@import './lato-styles.css';
 
 html {
   font-family: 'Lato';
   font-weight: normal;
+  height: 100%;
 }
-
+body {
+  font-family: 'Lato';
+  background-color: var(--dark-theme-bg);
+  color: var(--dark-theme-color);
+  height: 100%;
+}
 :root {
-  --dark-theme-bg: #1a1a1a;
+  --dark-theme-bg: #23272f;
+  --dark-theme-black: #1a1a1a;
   --dark-theme-color: #dfdfdf;
   --dark-theme-active: #00ffa6ff;
+  --dark-theme-card-bg-dark: #3c3f41;
+  --dark-theme-button-color: #02a570;
+  --dark-theme-button-hover: #01462f;
 }
 
+h1 {
+  font-size: 1.5em;
+}
 a {
   color: var(--dark-theme-color);
   text-decoration: none;
@@ -18,4 +32,69 @@ a {
 
 .link-active {
   color: var(--dark-theme-active);
+}
+
+button {
+  color: white;
+  background-color: var(--dark-theme-button-color);
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+button:hover {
+  cursor: pointer;
+  background-color: var(--dark-theme-button-hover);
+}
+
+#app {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+main {
+  max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: start;
+  align-content: start;
+  padding: 20px;
+  margin: auto;
+}
+.activity-title {
+  display: flex;
+  width: 100%;
+}
+.activity-title-icon {
+  margin-right: 20px;
+  font-size: 1.5em;
+}
+.activity-title h1 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+input {
+  margin-top: 5px;
+  border-radius: 5px;
+  border: solid 1px var(--dark-theme-color);
+  background-color: #16181d;
+  color: var(--dark-theme-color);
+  padding: 10px;
+}
+
+.spinner {
+  animation: 1.8s spinner-rotation infinite;
+}
+@keyframes spinner-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

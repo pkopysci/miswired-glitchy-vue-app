@@ -4,31 +4,29 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <div class="header-wrapper">
-    <header class="app-header">
-      <span>
-        <RouterLink to="/">
-          <img :src="logo" alt="Glitch App" />
-          <span class="logo-text">Glitchy</span>
-        </RouterLink>
-      </span>
-      <!-- Hamburger Icon -->
-      <input class="side-menu" type="checkbox" id="side-menu" />
-      <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
-      <nav class="nav">
-        <ul class="menu">
-          <li>
-            <RouterLink to="/" activeClass="link-active">Home</RouterLink>
-          </li>
-          <li><RouterLink activeClass="link-active" to="glitch">Glitch</RouterLink></li>
-          <li><RouterLink activeClass="link-active" to="adc">Power Setup</RouterLink></li>
-          <li>
-            <RouterLink activeClass="link-active" to="power-analysis">Power Analysis</RouterLink>
-          </li>
-        </ul>
-      </nav>
-    </header>
-  </div>
+  <header class="app-header">
+    <span>
+      <RouterLink to="/">
+        <img :src="logo" alt="Glitch App" />
+        <span class="logo-text">Glitchy</span>
+      </RouterLink>
+    </span>
+    <!-- Hamburger Icon -->
+    <input class="side-menu" type="checkbox" id="side-menu" />
+    <label class="hamb" for="side-menu"><span class="hamb-line"></span></label>
+    <nav class="nav">
+      <ul class="menu">
+        <li>
+          <RouterLink to="/" activeClass="link-active">Home</RouterLink>
+        </li>
+        <li><RouterLink activeClass="link-active" to="glitch">Glitch</RouterLink></li>
+        <li><RouterLink activeClass="link-active" to="adc">Power Setup</RouterLink></li>
+        <li>
+          <RouterLink activeClass="link-active" to="power-analysis">Power Analysis</RouterLink>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </template>
 
 <style scoped>
@@ -39,6 +37,7 @@ import { RouterLink } from 'vue-router'
 .app-header {
   color: var(--dark-theme-color);
   padding: 20px;
+  width: 90%;
   max-width: 1280px;
   margin: auto;
 }
@@ -58,7 +57,8 @@ import { RouterLink } from 'vue-router'
   height: 100%;
   position: fixed;
   overflow: hidden;
-  background-color: var(--dark-theme-bg);
+  /*background-color: var(--dark-theme-bg);*/
+  background-color: black;
   max-height: 0;
   transition: max-height 0.3s ease-out;
 }
@@ -76,7 +76,7 @@ import { RouterLink } from 'vue-router'
   cursor: pointer;
   float: right;
   padding: 25px;
-} /* Style label tag */
+}
 
 .hamb-line {
   background: var(--dark-theme-color);
@@ -84,7 +84,7 @@ import { RouterLink } from 'vue-router'
   height: 2px;
   position: relative;
   width: 24px;
-} /* Style span tag */
+}
 
 .hamb-line::before,
 .hamb-line::after {
