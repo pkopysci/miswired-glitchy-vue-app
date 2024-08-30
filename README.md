@@ -10,6 +10,7 @@ after running the install & build commands, the contents of the *dist* folder sh
 #### New Features
 * added UI design for the home page
 * added UI design for the power glitching activity
+* added support for font-awesome icons
 
 #### Bug Fixes
 * none
