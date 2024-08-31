@@ -1,6 +1,6 @@
 <script setup>
-import alertCard from '@/components/cards/alertCard.vue'
 import actionCard from '@/components/cards/ActionCard.vue'
+import alertCard from '@/components/cards/AlertCard.vue'
 import router from '@/router'
 
 const onGlitchActionButton = () => {
@@ -8,7 +8,6 @@ const onGlitchActionButton = () => {
 }
 
 const onAnalysisActionButton = () => {
-  console.log('onAnalysisActionButton()')
   router.push('/adc')
 }
 </script>

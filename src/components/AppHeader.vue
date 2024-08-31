@@ -61,6 +61,7 @@ import { RouterLink } from 'vue-router'
   background-color: black;
   max-height: 0;
   transition: max-height 0.3s ease-out;
+  z-index: 1000;
 }
 .menu a {
   display: block;
