@@ -110,10 +110,6 @@ const onStartTest = () => {
   max-width: inherit;
 }
 
-.glitch-activity .content {
-  width: 100%;
-}
-
 .glitch-form {
   display: flex;
   flex-direction: column;
@@ -198,7 +194,6 @@ const onStartTest = () => {
 
   .glitch-form {
     margin-right: 100px;
-    margin-top: 30px;
   }
 
   .results-card {

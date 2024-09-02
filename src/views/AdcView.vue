@@ -8,6 +8,7 @@ import { ref } from 'vue'
 
 const streamEnabled = ref(false)
 const onToggleStream = () => {
+  console.log('TODO: AdcView.onToggleStream()')
   streamEnabled.value = !streamEnabled.value
 }
 
@@ -72,39 +73,6 @@ const onNavToAnalysis = () => {
   display: flex;
   flex-direction: column;
   max-width: inherit;
-}
-
-.adc-activity .content {
-  width: 100%;
-}
-
-.setup-controls {
-  display: flex;
-  flex-direction: column;
-}
-.setup-controls a {
-  color: white;
-  background-color: var(--dark-theme-button-color);
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  font-size: 1.2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.setup-controls a:hover {
-  cursor: pointer;
-  background-color: var(--dark-theme-button-hover);
-}
-.setup-controls button {
-  width: 100%;
-  margin: 20px 0;
-  font-size: 1.2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .toggle-input-wrapper {

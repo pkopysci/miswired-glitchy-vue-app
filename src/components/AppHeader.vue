@@ -39,7 +39,7 @@ import { RouterLink } from 'vue-router'
   padding: 20px;
   width: 90%;
   max-width: 1280px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .app-header img {

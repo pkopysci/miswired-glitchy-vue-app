@@ -29,7 +29,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: fit-content;
+  /* min-height: fit-content; */
 }
 
 .icon-style {
@@ -58,6 +58,10 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .footer {
+    height: fit-content;
   }
 }
 </style>
