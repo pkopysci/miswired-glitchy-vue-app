@@ -16,10 +16,12 @@
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
+    "apexcharts": "^3.53.0",
     "pinia": "^2.1.7",
     "reconnecting-websocket": "^4.4.0",
     "vue": "^3.4.29",
-    "vue-router": "^4.3.3"
+    "vue-router": "^4.3.3",
+    "vue3-apexcharts": "^1.6.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
