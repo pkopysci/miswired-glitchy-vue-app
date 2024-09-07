@@ -1,9 +1,9 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import ReconnectingWebSocket from 'reconnecting-websocket'
 import { useAdcStore } from './adcStore'
 import { useKeyTracesStore } from './keyTracesStore'
 import { useGlitchStore } from './glitchStore'
+import ReconnectingWebSocket from 'reconnecting-websocket'
 
 export const useWebsocketStore = defineStore('websocketStore', () => {
   const adcStore = useAdcStore()
@@ -112,7 +112,6 @@ export const useWebsocketStore = defineStore('websocketStore', () => {
     websocket.value.addEventListener('message', (msg) => {
       try {
         let parsedRx = JSON.parse(msg.data)
-        console.log(parsedRx.PacketType)
         responseActions[parsedRx.PacketType](parsedRx)
       } catch (error) {
         console.error('websocketstore - failed to parse response. Reason: ' + error.message)

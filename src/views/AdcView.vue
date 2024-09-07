@@ -1,16 +1,27 @@
 <script setup>
+import { faArrowCircleRight, faGear, faLink } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { onBeforeMount, ref } from 'vue'
+import { useAdcStore } from '@/stores/adcStore'
 import router from '@/router'
 import cardBase from '@/components/cards/cardBase.vue'
 import ToggleButton from '@/components/controls/ToggleButton.vue'
-import { faArrowCircleRight, faGear, faLink } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { ref } from 'vue'
 
+const adcStore = useAdcStore()
 const streamEnabled = ref(false)
+
 const onToggleStream = () => {
-  console.log('TODO: AdcView.onToggleStream()')
   streamEnabled.value = !streamEnabled.value
+  if (streamEnabled.value) {
+    adcStore.startStream()
+  } else {
+    adcStore.stopStream()
+  }
 }
+
+onBeforeMount(() => {
+  adcStore.stopStream()
+})
 
 const onNavToAnalysis = () => {
   router.push('/power-analysis')
@@ -47,10 +58,10 @@ const onNavToAnalysis = () => {
       </div>
       <div class="graph-wrapper">
         <cardBase>
-          <div class="graph-card">This is a placeholder for visualizations</div>
+          <apexchart :options="adcStore.ampChartOptions" :series="adcStore.ampData"></apexchart>
         </cardBase>
         <cardBase>
-          <div class="graph-card">This is a placeholder for visualizations</div>
+          <apexchart :options="adcStore.biasChartOptions" :series="adcStore.biasData"></apexchart>
         </cardBase>
       </div>
     </div>

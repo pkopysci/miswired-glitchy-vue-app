@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { defineStore } from 'pinia'
 import { useWebsocketStore } from './websocketStore'
 
@@ -8,32 +8,121 @@ const STOP_COMMAND = 'disable_adc_stream'
 export const useAdcStore = defineStore('acdStore', () => {
   const websocketStore = useWebsocketStore()
 
-  /**
-   * Actual output from the Glitchy board to the controller.
-   */
-  const lastAmpInVolts = ref(0)
+  const ampChartOptions = ref({
+    title: {
+      text: 'Amp Output',
+      align: 'center',
+      style: {
+        fontFamily: 'lato',
+        color: '#02a570'
+      }
+    },
+    colors: ['#02a570', '#FFFFFF', '#A1a1a1'],
+    chart: {
+      id: 'realtime',
+      type: 'line',
+      animations: {
+        enabled: true,
+        easing: 'linear',
+        dynamicAnimation: { speed: 1000 }
+      },
+      toolbar: { show: false },
+      zoom: { enabled: false }
+    },
+    stroke: { curve: 'smooth' },
+    xaxis: {
+      type: 'numeric',
+      range: 5000,
+      labels: {
+        show: false
+      }
+    },
+    yaxis: {
+      // min: 0,
+      // max: 1,
+      labels: {
+        formatter: function (val, index) {
+          return val.toFixed(2)
+        }
+      }
+    },
+    legend: { show: false }
+  })
+
+  const biasChartOptions = ref({
+    title: {
+      text: 'Bias Output',
+      align: 'center',
+      style: {
+        fontFamily: 'lato',
+        color: '#02a570'
+      }
+    },
+    colors: ['#02a570', '#FFFFFF', '#A1a1a1'],
+    chart: {
+      id: 'realtime',
+      type: 'line',
+      animations: {
+        enabled: true,
+        easing: 'linear',
+        dynamicAnimation: { speed: 1000 }
+      },
+      toolbar: { show: false },
+      zoom: { enabled: false }
+    },
+    stroke: { curve: 'smooth' },
+    xaxis: {
+      type: 'numeric',
+      range: 5000,
+      labels: {
+        show: false
+      }
+    },
+    yaxis: {
+      // min: 0,
+      // max: 1,
+      labels: {
+        formatter: function (val, index) {
+          return val.toFixed(2)
+        }
+      }
+    },
+    legend: { show: false }
+  })
+
+  const ampDataPoints = ref([])
+  const ampData = ref([{ data: ampDataPoints }])
+
+  const biasDataPoints = ref([])
+  const biasData = ref([{ data: biasDataPoints }])
+
+  onMounted(() => {
+    // clear memory after 2 minutes to prevent leaks and/or excessive array length
+    setInterval(() => {
+      ampDataPoints.value = []
+      biasDataPoints.value = []
+    }, 120000)
+  })
+
+  onBeforeUnmount(() => {
+    ampDataPoints.value = []
+    biasDataPoints.value = []
+  })
 
   /**
-   * The current bias set for attempting to power glitch the controller.
-   */
-  const lastBiasVolts = ref(0)
-
-  /**
-   * Update the current lastAmpInVolts state.
+   * Update the collection of data points for Amp visualization
    * @param {number} value the output power, in volts, that the current state will be set to.
    */
   function updateLastAmp(value) {
-    console.log('adcsStore.updateLastAmp(' + value + ')')
-    lastAmpInVolts.value = value
+    ampDataPoints.value.push({ x: Date.now(), y: value })
   }
 
   /**
-   * Update the lastBiasVolts state value.
+   * Update the bias level for visualization.
    * @param {number} value the bias that has been set on the glitch board
    */
   function updateLastBias(value) {
-    console.log('adscStore.updateLastBias(' + value + ')')
-    lastBiasVolts.value = value
+    biasDataPoints.value.push({ x: Date.now(), y: value })
   }
 
   /**
@@ -53,8 +142,10 @@ export const useAdcStore = defineStore('acdStore', () => {
   }
 
   return {
-    lastAmpInVolts,
-    lastBiasVolts,
+    ampChartOptions,
+    biasChartOptions,
+    ampData,
+    biasData,
     updateLastAmp,
     updateLastBias,
     startStream,
