@@ -8,13 +8,16 @@ import {
   faPowerOff
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { useKeyTracesStore } from '@/stores/keyTracesStore'
+
+const keyTraceStore = useKeyTracesStore()
 
 const onBackToSetup = () => {
   router.push('/adc')
 }
 
 const onStartAnalysis = () => {
-  console.log('TODO: PowerAnalysisVue.onStartAnalysis()')
+  keyTraceStore.startAnalysis()
 }
 </script>
 
@@ -48,7 +51,12 @@ const onStartAnalysis = () => {
       </div>
       <div class="graph-wrapper">
         <cardBase>
-          <div class="graph-card">This is a placeholder for visualizations</div>
+          <div class="graph-card">
+            <apexchart
+              :options="keyTraceStore.graphConfig"
+              :series="keyTraceStore.seriesCollection"
+            ></apexchart>
+          </div>
         </cardBase>
       </div>
     </div>
