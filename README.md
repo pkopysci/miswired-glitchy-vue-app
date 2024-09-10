@@ -6,6 +6,18 @@ This web app is an alternate way to interface with the [Glitchy Circuit Breaker 
 after running the install & build commands, the contents of the *dist* folder should be loaded to the root directory of a MicroSD card and inserted into the card slot of the Glitchy board. Then follow the normal connection instructions defined in the [Glitchy Wiki](https://github.com/miswired/glitchy/wiki/Guide-%E2%80%90-Quick-Start).
 
 ## Release Notes
+### 0.0.6 - Alpha
+#### New Features
+* updated ADC and power analysis pages with ApexChart graphs instead of placeholders
+
+#### Bug Fixes
+* none
+
+#### Backlog
+* implement Glitch attack activity
+* Update hardware API with updates from the Glitchy repo
+  
+-----
 ### 0.0.5 - Alpha
 #### New Features
 * added ApexChart libraries for visualizations
