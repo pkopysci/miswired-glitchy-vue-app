@@ -12,6 +12,8 @@ after running the install & build commands, the contents of the *dist* folder sh
 * Updated all stores to support new data styling
 * Updated all components to display data appropriately
 * Ready for full testing
+  
+------
 
 ### 0.0.6 - Alpha
 #### New Features
