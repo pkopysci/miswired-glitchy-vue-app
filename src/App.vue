@@ -6,8 +6,8 @@ import AppFooter from './components/AppFooter.vue'
 const websocketStore = useWebsocketStore()
 
 onMounted(() => {
-  // websocketStore.initialize(`ws://${window.location.hostname}/ws`) // make this user-privded?
-  // websocketStore.open()
+  websocketStore.initialize(`ws://${window.location.hostname}/ws`) // make this user-privded?
+  websocketStore.open()
 })
 
 onBeforeUnmount(() => {
