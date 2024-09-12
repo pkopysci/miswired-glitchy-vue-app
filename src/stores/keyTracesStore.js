@@ -2,8 +2,6 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useWebsocketStore } from './websocketStore'
 
-const START_COMMAND = 'start_power_analysis'
-
 export const useKeyTracesStore = defineStore('keyTracesStore', () => {
   const websocketStore = useWebsocketStore()
 
@@ -28,14 +26,12 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
     xaxis: {
       title: { text: 'Samples' },
       type: 'numeric',
-      range: 5000,
+      // range: 5000,
       labels: { show: false }
     },
     yaxis: {
       title: { text: 'Volts' },
-      labels: { show: true },
-      min: 0,
-      max: 5
+      labels: { show: true }
     }
   })
 
@@ -56,15 +52,40 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
    * @param {Array<number>} array3 The power data for the third key used in the key glitch test
    */
   function updateKeyArrays(array1, array2, array3) {
-    console.log('TODO: useKeyTracesStore.updateKeyArrays()')
+    console.log('useKeyTracesStore.updateKeyArrays()')
+
     console.log(array1)
+    console.log(array2)
+    console.log(array3)
+
+    let newKey1Data = []
+    array1.forEach((point, index) => {
+      newKey1Data.push({ x: index, y: point })
+    })
+
+    let newkey2Data = []
+    array1.forEach((point, index) => {
+      newkey2Data.push({ x: index, y: point })
+    })
+
+    let newkey3Data = []
+    array1.forEach((point, index) => {
+      newkey3Data.push({ x: index, y: point })
+    })
+
+    key1DataPoints.value = newKey1Data
+    key2DataPoints.value = newkey2Data
+    key3DataPoints.value = newkey3Data
   }
 
   /**
    * Sends a request to the Glitchy board to begin a power analysis of the 3 keys and stream results.
    */
   function startAnalysis() {
-    websocketStore.send(START_COMMAND)
+    websocketStore.send({
+      CommsVersion: 1.1,
+      PacketType: 'start_power_analysis'
+    })
   }
 
   return {

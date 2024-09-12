@@ -2,9 +2,6 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { defineStore } from 'pinia'
 import { useWebsocketStore } from './websocketStore'
 
-const START_COMMAND = 'enable_adc_stream'
-const STOP_COMMAND = 'disable_adc_stream'
-
 export const useAdcStore = defineStore('acdStore', () => {
   const websocketStore = useWebsocketStore()
 
@@ -130,7 +127,10 @@ export const useAdcStore = defineStore('acdStore', () => {
    * NOTE: the websocket store must be initialized and connected.
    */
   function startStream() {
-    websocketStore.send(START_COMMAND)
+    websocketStore.send({
+      CommsVersion: 1.1,
+      PacketType: 'enable_adc_stream'
+    })
   }
 
   /**
@@ -138,7 +138,10 @@ export const useAdcStore = defineStore('acdStore', () => {
    * NOTE: the websocket store must be initialized and connected.
    */
   function stopStream() {
-    websocketStore.send(STOP_COMMAND)
+    websocketStore.send({
+      CommsVersion: 1.1,
+      PacketType: 'disable_adc_stream'
+    })
   }
 
   return {

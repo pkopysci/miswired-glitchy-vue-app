@@ -46,7 +46,8 @@ export const useWebsocketStore = defineStore('websocketStore', () => {
     },
     UpdateGlitchStatus: (rx) => {
       glitchStore.updateGlitchStatus(rx.running, rx.success, rx.try_number, rx.delay_value)
-    }
+    },
+    glitch_param: (rx) => glitchStore.updateGlitchParameters(rx)
   }
 
   /**
@@ -126,18 +127,27 @@ export const useWebsocketStore = defineStore('websocketStore', () => {
     initialized.value = true
   }
 
-  function send(message) {
+  /**
+   * Attempt to serialize a JSON data pacakge and send it to hardware. Logs any errors to console.
+   * @param {object} data The JSON data object that will be serialzed and sent to the hardware.
+   */
+  function send(data) {
     if (!initialized.value || !connected.value) {
       console.error('websocketStore.send() - not initialized or not connected.')
       return
     }
 
-    if (!message) {
+    if (!data) {
       console.error('websocketStore.send() - message cannot be undefined.')
       return
     }
 
-    websocket.value.send(message)
+    try {
+      let message = JSON.stringify(data)
+      websocket.value.send(message)
+    } catch (err) {
+      console.err('websocketStore.send() - failed to send data to server. reason: ' + err.message)
+    }
   }
 
   return {
