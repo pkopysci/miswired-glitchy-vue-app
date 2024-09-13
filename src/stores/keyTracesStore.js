@@ -7,7 +7,7 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
 
   const graphConfig = ref({
     title: { enabled: false },
-    colors: ['#02a570', '#A02334', '#7695FF'],
+    colors: ['rgba(1, 165, 111, 0.5)', 'rgba(160, 35, 52, 0.5)', 'rgba(118, 149, 255, 0.5)'],
     chart: {
       type: 'line',
       animations: {
@@ -45,6 +45,8 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
     { name: 'Key 3', data: key3DataPoints }
   ])
 
+  const analysisRunning = ref(false)
+
   /**
    * Update the local store of power data for all 3 keys used in the glitching test.
    * @param {Array<number>} array1 The power data for the first key used in the key glitch test
@@ -60,18 +62,23 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
 
     let newKey1Data = []
     array1.forEach((point, index) => {
-      newKey1Data.push({ x: index, y: point })
+      let adjustedPoint = point > 0 ? point / 1000 : point
+      newKey1Data.push({ x: index, y: adjustedPoint })
     })
 
     let newkey2Data = []
     array1.forEach((point, index) => {
-      newkey2Data.push({ x: index, y: point })
+      let adjustedPoint = point > 0 ? point / 1000 : point
+      newkey2Data.push({ x: index, y: adjustedPoint })
     })
 
     let newkey3Data = []
     array1.forEach((point, index) => {
-      newkey3Data.push({ x: index, y: point })
+      let adjustedPoint = point > 0 ? point / 1000 : point
+      newkey3Data.push({ x: index, y: adjustedPoint })
     })
+
+    analysisRunning.value = false
 
     key1DataPoints.value = newKey1Data
     key2DataPoints.value = newkey2Data
@@ -82,6 +89,7 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
    * Sends a request to the Glitchy board to begin a power analysis of the 3 keys and stream results.
    */
   function startAnalysis() {
+    analysisRunning.value = true
     websocketStore.send({
       CommsVersion: 1.1,
       PacketType: 'start_power_analysis'
@@ -91,6 +99,7 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
   return {
     graphConfig,
     seriesCollection,
+    analysisRunning,
     updateKeyArrays,
     startAnalysis
   }

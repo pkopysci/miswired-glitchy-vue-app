@@ -12,9 +12,6 @@ const router = createRouter({
     {
       path: '/glitch',
       name: 'glitch',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/GlitchView.vue')
     },
     {
@@ -26,6 +23,11 @@ const router = createRouter({
       path: '/power-analysis',
       name: 'power-analysis',
       component: () => import('../views/PowerAnalysisView.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      redirect: '/'
     }
   ]
 })

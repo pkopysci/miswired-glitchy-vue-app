@@ -21,7 +21,7 @@ const attemptDelay = ref(0)
 const maxAttempts = ref(0)
 
 // form validation
-const startLengthValid = computed(() => startLength.value > 15 && startLength.value < 4294967295)
+const startLengthValid = computed(() => startLength.value >= 15 && startLength.value < 4294967295)
 const endLengthValid = computed(
   () => endLength.value > startLength.value && endLength.value < 4294967295
 )
@@ -39,6 +39,11 @@ const formValid = computed(
 
 onBeforeMount(() => {
   glitchStore.getCurrentParameters()
+  startLength.value = glitchStore.parameters.startTime
+  endLength.value = glitchStore.parameters.endTime
+  stepSize.value = glitchStore.parameters.increaseAmount
+  attemptDelay.value = glitchStore.parameters.delay
+  maxAttempts.value = glitchStore.parameters.maxAttempts
 })
 
 watch(glitchStore.parameters, () => {
@@ -81,7 +86,7 @@ const onStartTest = () => {
           <p class="label-wrap">
             <label :class="startLengthValid ? '' : 'glitch-form-error'" for="startLength">
               Start Length (nanoseconds)
-              <span v-if="!startLengthValid"> - Required, must be positive.</span>
+              <span v-if="!startLengthValid"> - Required, must be positive and at least 15ns.</span>
             </label>
           </p>
           <p><input id="startLength" type="number" required v-model="startLength" /></p>
@@ -114,7 +119,7 @@ const onStartTest = () => {
 
           <p class="label-wrap">
             <label for="maxAttempts" :class="maxAttemptsValid ? '' : 'glitch-form-error'">
-              Maximum Attempts
+              Attempts Per Length
               <span v-if="!maxAttemptsValid"> - Required, must be positive.</span>
             </label>
           </p>
@@ -141,6 +146,10 @@ const onStartTest = () => {
               :icon="faArrowsSpin"
             ></FontAwesomeIcon>
             <h2 style="margin-top: 10px">Running...</h2>
+            <p>
+              Attempt {{ glitchStore.numberOfAttempts }} with delay of
+              {{ glitchStore.delayValue }}ns
+            </p>
           </div>
 
           <div class="results-card" v-if="!glitchStore.running && !firstTestRan">
@@ -244,6 +253,9 @@ const onStartTest = () => {
 }
 .results-card h2 {
   font-size: 1.2em;
+}
+.results-card p {
+  margin-top: 10px;
 }
 .results-card table {
   margin-top: 20px;

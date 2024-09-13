@@ -5,7 +5,8 @@ import {
   faArrowCircleLeft,
   faChartLine,
   faLink,
-  faPowerOff
+  faPowerOff,
+  faArrowsSpin
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { useKeyTracesStore } from '@/stores/keyTracesStore'
@@ -51,7 +52,15 @@ const onStartAnalysis = () => {
       </div>
       <div class="graph-wrapper">
         <cardBase>
-          <div class="graph-card">
+          <div class="graph-card" style="min-width: 300px" v-if="keyTraceStore.analysisRunning">
+            <FontAwesomeIcon
+              class="spinner"
+              style="font-size: 1.5em"
+              :icon="faArrowsSpin"
+            ></FontAwesomeIcon>
+            <h2 style="margin-top: 10px">Running...</h2>
+          </div>
+          <div v-else class="graph-card" style="min-width: 300px">
             <apexchart
               :options="keyTraceStore.graphConfig"
               :series="keyTraceStore.seriesCollection"

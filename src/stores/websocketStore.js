@@ -45,6 +45,8 @@ export const useWebsocketStore = defineStore('websocketStore', () => {
       keyTracesStore.updateKeyArrays(rx.key_1_array, rx.key_2_array, rx.key_3_array)
     },
     UpdateGlitchStatus: (rx) => {
+      console.log('websocketStore.UpdateGlitchStatus()')
+      console.log(rx)
       glitchStore.updateGlitchStatus(rx.running, rx.success, rx.try_number, rx.delay_value)
     },
     glitch_param: (rx) => glitchStore.updateGlitchParameters(rx)

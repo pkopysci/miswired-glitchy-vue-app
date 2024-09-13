@@ -26,10 +26,6 @@ export const useGlitchStore = defineStore('glitchStore', () => {
    * @param {number} delay time since last glitch attempt, in nanoseconds (ns).
    */
   function updateGlitchStatus(isRunning, glitchResult, numTries, delay) {
-    console.log(
-      `glitchStore.updateGlitchStatus(${isRunning}, ${glitchResult}, ${numTries}, ${delay})`
-    )
-
     result.value = glitchResult
     running.value = isRunning
     numberOfAttempts.value = numTries
@@ -37,8 +33,6 @@ export const useGlitchStore = defineStore('glitchStore', () => {
   }
 
   function updateGlitchParameters(rxObject) {
-    console.log('glitchStore.updateGlitchParameters()')
-    console.log(rxObject)
     parameters.value.startTime = rxObject.start_time_ns
     parameters.value.endTime = rxObject.stop_time_ns
     parameters.value.delay = rxObject.delay_between_glitches_ms
