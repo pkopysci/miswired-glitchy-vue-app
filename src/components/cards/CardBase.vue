@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   max-width: 500px;
-  display: flex;
   border-radius: 10px;
   padding: 20px;
   justify-content: start;

@@ -86,7 +86,6 @@ const onStartAnalysis = () => {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 200px;
   color: var(--dark-theme-button-color);
 }
 
@@ -95,14 +94,29 @@ const onStartAnalysis = () => {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
   }
 
   .setup-controls {
     max-width: 300px;
-    margin-right: 10%;
     height: 100%;
     padding-top: 10px;
+  }
+
+  .graph-wrapper {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-base {
+    width: 100%;
+  }
+
+  .card-base .vue-apexcharts {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

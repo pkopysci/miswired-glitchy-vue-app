@@ -18,6 +18,7 @@ export const useAdcStore = defineStore('acdStore', () => {
     chart: {
       id: 'realtime',
       type: 'line',
+      redrawOnParentResize: true,
       animations: {
         enabled: true,
         easing: 'linear',

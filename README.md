@@ -8,6 +8,14 @@ after running the install & build commands, the contents of the _dist_ folder sh
 
 ## Release Notes
 
+### 0.1.2 - BETA
+
+#### Bug Fixes
+
+- fixed an issue where the first key array was being sent to all 3 graph outputs.
+
+---
+
 ### 0.1.1 - BETA
 
 #### New Features
@@ -20,6 +28,8 @@ after running the install & build commands, the contents of the _dist_ folder sh
 - updated the analysis setup page so the label for attempts-per-length is now more clear about what that value is for
 - fixed an issue where the glich attack page would not load form values when navigating away and then back to that page
 - Scaled the key trace values to show volts instead of millivolts on the Y axis
+
+---
 
 ### 0.1.0 - BETA
 

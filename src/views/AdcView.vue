@@ -94,6 +94,13 @@ const onNavToAnalysis = () => {
 }
 
 @media (min-width: 768px) {
+  .graph-wrapper {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .adc-activity .content {
     display: flex;
     flex-direction: row;
@@ -106,6 +113,15 @@ const onNavToAnalysis = () => {
     margin-right: 10%;
     height: 100%;
     padding-top: 10px;
+  }
+
+  .card-base {
+    width: 100%;
+  }
+
+  .card-base .vue-apexcharts {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

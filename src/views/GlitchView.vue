@@ -281,17 +281,26 @@ const onStartTest = () => {
   .glitch-activity .content {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
   }
 
-  .glitch-form {
-    margin-right: 100px;
+  .result-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
   }
 
   .results-card {
     min-width: 300px;
     min-height: 200px;
+  }
+
+  .result-container .card-base {
+    width: 100%;
+    max-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

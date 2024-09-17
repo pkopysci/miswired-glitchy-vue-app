@@ -31,6 +31,8 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
     },
     yaxis: {
       title: { text: 'Volts' },
+      // min: 1.0,
+      // max: 4.0,
       labels: { show: true }
     }
   })
@@ -56,10 +58,6 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
   function updateKeyArrays(array1, array2, array3) {
     console.log('useKeyTracesStore.updateKeyArrays()')
 
-    console.log(array1)
-    console.log(array2)
-    console.log(array3)
-
     let newKey1Data = []
     array1.forEach((point, index) => {
       let adjustedPoint = point > 0 ? point / 1000 : point
@@ -67,13 +65,13 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
     })
 
     let newkey2Data = []
-    array1.forEach((point, index) => {
+    array2.forEach((point, index) => {
       let adjustedPoint = point > 0 ? point / 1000 : point
       newkey2Data.push({ x: index, y: adjustedPoint })
     })
 
     let newkey3Data = []
-    array1.forEach((point, index) => {
+    array3.forEach((point, index) => {
       let adjustedPoint = point > 0 ? point / 1000 : point
       newkey3Data.push({ x: index, y: adjustedPoint })
     })
