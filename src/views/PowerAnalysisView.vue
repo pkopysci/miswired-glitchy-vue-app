@@ -104,14 +104,14 @@ const onStartAnalysis = () => {
   }
 
   .graph-wrapper {
-    width: 50%;
+    width: 70%;
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
 
   .card-base {
     width: 100%;
+    max-width: 100%;
   }
 
   .card-base .vue-apexcharts {

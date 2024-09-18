@@ -7,7 +7,7 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
 
   const graphConfig = ref({
     title: { enabled: false },
-    colors: ['rgba(1, 165, 111, 0.5)', 'rgba(160, 35, 52, 0.5)', 'rgba(118, 149, 255, 0.5)'],
+    colors: ['rgb(1, 165, 111)', 'rgb(160, 35, 52)', 'rgb(118, 149, 255)'],
     chart: {
       type: 'line',
       animations: {
@@ -16,23 +16,23 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
         dynamicAnimation: { speed: 1000 }
       },
       toolbar: { show: false },
-      zoom: { enabled: false },
+      zoom: { enabled: true },
       dataLabels: {
         enabled: false
       }
     },
     dataLabels: { enabled: false },
-    stroke: { curve: 'smooth' },
+    stroke: {
+      curve: 'smooth',
+      width: 1
+    },
     xaxis: {
       title: { text: 'Samples' },
       type: 'numeric',
-      // range: 5000,
       labels: { show: false }
     },
     yaxis: {
       title: { text: 'Volts' },
-      // min: 1.0,
-      // max: 4.0,
       labels: { show: true }
     }
   })
