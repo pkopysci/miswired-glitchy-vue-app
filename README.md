@@ -8,6 +8,16 @@ after running the install & build commands, the contents of the _dist_ folder sh
 
 ## Release Notes
 
+### 0.1.3 - BETA
+
+### New Features
+
+- enabled zooming
+- increase graph size on page
+- reduce the thickness of each line to 1px.
+
+---
+
 ### 0.1.2 - BETA
 
 #### Bug Fixes
