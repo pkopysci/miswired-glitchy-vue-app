@@ -24,6 +24,7 @@ import { RouterLink } from 'vue-router'
         <li>
           <RouterLink activeClass="link-active" to="power-analysis">Power Analysis</RouterLink>
         </li>
+        <li><RouterLink activeClass="link-active" to="about-us">About</RouterLink></li>
       </ul>
     </nav>
   </header>

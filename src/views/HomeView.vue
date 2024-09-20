@@ -14,23 +14,11 @@ const onAnalysisActionButton = () => {
 
 <template>
   <div class="home-content">
-    <alertCard>
-      <h1>FW 1.0 (Early Access)</h1>
-      <p>
-        This is the glitchy, DEFCON 32 early access version, meaning the base functionality works,
-        but there is a lot of polishing and features being worked on still. I want to thank you for
-        your support. If you have any comments, bugs, or would like to contribute a pull request,
-        please check out
-        <a href="https://miswired.io/glitchy" target="blank">miswired.io/glitchy</a> and the
-        <a href="https://github.com/miswired/glitchy" target="blank">github repo</a>. You may also
-        want to download and flash the latest version of the software.
-      </p>
-    </alertCard>
     <div class="home-info">
       <h1>Learn Hardware Hacking</h1>
       <p>
         This board is designed to introduce two hardware exploitation techniques to get you started
-        into the world of hardware hacking. It’s setup to perform power glitching and power
+        into the world of hardware hacking. It is setup to perform power glitching and power
         analysis.
       </p>
     </div>
