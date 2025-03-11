@@ -1,6 +1,6 @@
 <script setup>
 import router from '@/router'
-import cardBase from '@/components/cards/cardBase.vue'
+import cardBase from '@/components/cards/CardBase.vue'
 import {
   faArrowCircleLeft,
   faChartLine,

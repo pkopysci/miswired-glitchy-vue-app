@@ -129,7 +129,7 @@ export const useAdcStore = defineStore('acdStore', () => {
    */
   function startStream() {
     websocketStore.send({
-      CommsVersion: 1.1,
+      CommsVersion: '1.1',
       PacketType: 'enable_adc_stream'
     })
   }
@@ -140,7 +140,7 @@ export const useAdcStore = defineStore('acdStore', () => {
    */
   function stopStream() {
     websocketStore.send({
-      CommsVersion: 1.1,
+      CommsVersion: '1.1',
       PacketType: 'disable_adc_stream'
     })
   }

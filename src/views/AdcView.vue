@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { onBeforeMount, ref } from 'vue'
 import { useAdcStore } from '@/stores/adcStore'
 import router from '@/router'
-import cardBase from '@/components/cards/cardBase.vue'
+import cardBase from '@/components/cards/CardBase.vue'
 import ToggleButton from '@/components/controls/ToggleButton.vue'
 
 const adcStore = useAdcStore()

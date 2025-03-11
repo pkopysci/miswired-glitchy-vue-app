@@ -42,7 +42,7 @@ export const useGlitchStore = defineStore('glitchStore', () => {
 
   function getCurrentParameters() {
     websocketStore.send({
-      CommsVersion: 1.1,
+      CommsVersion: '1.1',
       PacketType: 'get_glitch_param'
     })
   }
@@ -51,14 +51,14 @@ export const useGlitchStore = defineStore('glitchStore', () => {
    * Sends a request to the control board to begin the power glitching hack and stream results.
    * @param {number} startLength The amount of time (nanoseconds) that the first glitch will last.
    * @param {number} endLength The amound of time (nanoseconds) that the last glitch will last.
-   * @param {number} stepDelay How much (in nanoseconds) to increase the glitch length for each attempt.
+   * @param {number} stepSize How much (in nanoseconds) to increase the glitch length for each attempt.
    * @param {number} attemptDelay The amount of time (milliseconds) that each glitch will last.
    * @param {number} numAttempts The total number of glitch attempts to try before stopping.
    */
   function startGlitchAttempt(startLength, endLength, stepSize, attemptDelay, numAttempts) {
     // send configuration
     websocketStore.send({
-      CommsVersion: 1.1,
+      CommsVersion: '1.1',
       PacketType: 'set_glitch_param',
       start_time_ns: startLength,
       stop_time_ns: endLength,
@@ -69,7 +69,7 @@ export const useGlitchStore = defineStore('glitchStore', () => {
 
     // send start command
     websocketStore.send({
-      CommsVersion: 1.1,
+      CommsVersion: '1.1',
       PacketType: 'start_glitching'
     })
   }

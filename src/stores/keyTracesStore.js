@@ -89,7 +89,7 @@ export const useKeyTracesStore = defineStore('keyTracesStore', () => {
   function startAnalysis() {
     analysisRunning.value = true
     websocketStore.send({
-      CommsVersion: 1.1,
+      CommsVersion: '1.1',
       PacketType: 'start_power_analysis'
     })
   }
