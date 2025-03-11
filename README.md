@@ -7,6 +7,12 @@ This web app is an alternate way to interface with the [Glitchy Circuit Breaker 
 after running the install & build commands, the contents of the _dist_ folder should be loaded to the root directory of a MicroSD card and inserted into the card slot of the Glitchy board. Then follow the normal connection instructions defined in the [Glitchy Wiki](https://github.com/miswired/glitchy/wiki/Guide-%E2%80%90-Quick-Start).
 
 ## Release Notes
+### 1.0.1 
+#### Changes
+- Updated CommVersion attributes of the JSON commands to strings. This now corrilates with the latest udpates to the Glitchy platform.
+---
+
+## Release Notes
 ### 1.0.0 
 #### New Features
 - Final release of version 1.0
