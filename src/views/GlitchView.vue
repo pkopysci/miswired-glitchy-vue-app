@@ -1,5 +1,5 @@
 <script setup>
-import cardBase from '@/components/cards/cardBase.vue'
+import cardBase from '@/components/cards/CardBase.vue'
 import { useGlitchStore } from '@/stores/glitchStore'
 import {
   faBoltLightning,

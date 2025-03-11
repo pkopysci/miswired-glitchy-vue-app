@@ -87,7 +87,7 @@ export const useWebsocketStore = defineStore('websocketStore', () => {
    * Kills any active websocket, creates a new socket object with the provided host argument, and assigns event listeners.
    * This does not initiate a connection with the board (call open() for that).
    * Logs an error to console if 'host' is undefined or empty (length < 1).
-   * @param {string} host the ws:// address used to connect to the Glitchy board.
+   * @param {string} serverHost the ws:// address used to connect to the Glitchy board.
    */
   function initialize(serverHost) {
     if (!serverHost || serverHost.length < 1) {
